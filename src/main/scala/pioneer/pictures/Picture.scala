@@ -121,6 +121,7 @@ object Picture {
       }
     result
   }
+// I'm not entirely sure as to whether or not the condition implemented for the border pixels for the blur function is correct.
 
   def blur(image:BufferedImage): BufferedImage = {
     val height = image.getHeight

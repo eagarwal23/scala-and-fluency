@@ -1,13 +1,8 @@
 package pioneer.pictures
-
 import pioneer.resource
-
+import Picture.loadImage
 object PictureProgram extends App {
   // flip a picture horizontally, grayscale it, and rotate it left
-  Picture.flipHorizontal(resource("/image.png"), "output0.png")
-  Picture.grayScale("output0.png", "output1.png")
-  Picture.rotateLeft("output1.png", "output2.png")
-
-  // The final picture is now in the top folder of this project's directory,
-  // in a file called "output2.png".
-}
+  val image1 = loadImage(resource("/Users/eeshaagarwal/Desktop/scala-and-fluency/src/main/resources/image.png"))
+  val finalResult = Picture.rotateLeft(Picture.grayScale(Picture.flipHorizontal(image1)))
+  Picture.saveImage(finalResult, "output-01")}

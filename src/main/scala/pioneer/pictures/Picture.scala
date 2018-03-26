@@ -129,7 +129,7 @@ object Picture {
     for (column <- 0 until width)
       for (row <- 0 until height){
         if (column != 0 && column != width && row != 0 && row != height){
-          val blurPixel = Math.round((image.getRGB(column, row) + image.getRGB(column + 1, row) + image.getRGB(column - 1, row)) + image.getRGB(column, row +1) + image.getRGB(column, row - 1))/5)
+          val blurPixel = Math.round((image.getRGB(column, row) + image.getRGB(column + 1, row) + image.getRGB(column - 1, row) + image.getRGB(column, row +1) + image.getRGB(column, row - 1))/5)
           result.setRGB(column, row, blurPixel)
         }else {
           result.setRGB(column, row, image.getRGB(column, row))}

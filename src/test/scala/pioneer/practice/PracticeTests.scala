@@ -48,9 +48,16 @@ class PracticeTests extends FunSuite {
     assert(Practice.repeat("repeat") === "repeatrepeat")
   }
 
-  /**
-    * Tests for `sleepIn`
-    */
-
-  // write your tests here
+  test("Sleep in because it is a weekday and we're on vacation") {
+    assert(Practice.sleepIn(true, true) == true)
+  }
+  test("Sleep in because it is not a weekday and we're not on vacation") {
+    assert(Practice.sleepIn(false, false) == true)
+  }
+  test("Sleep in because it is not a weekday and we're on vacation") {
+    assert(Practice.sleepIn(false, true) == true)
+  }
+  test("Do not sleep in because it is a weekday and we're not on vacation"){
+    assert(Practice.sleepIn(true, false) == false)
+  }
 }

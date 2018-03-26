@@ -11,8 +11,7 @@ import javax.imageio.ImageIO
   * for help on how to perform basic image processing in Scala
   */
 object Picture {
-
-  /** Flips an image along its horizontal axis */
+  
   /** Flips an image along its horizontal axis */
   def flipHorizontal(image: BufferedImage): BufferedImage = {
 

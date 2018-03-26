@@ -13,86 +13,75 @@ import javax.imageio.ImageIO
 object Picture {
 
   /** Flips an image along its horizontal axis */
-  def flipHorizontal(inputFilename: String, outputFilename: String): Boolean = {
-    val image = loadImage(inputFilename)
+  /** Flips an image along its horizontal axis */
+  def flipHorizontal(image: BufferedImage): BufferedImage = {
 
     // create a new, empty image to copy pixels into
     val width = image.getWidth
     val height = image.getHeight
-    val imageType = image.getType
-    val result = new BufferedImage(width, height, imageType)
+    val result = new BufferedImage(width, height, image.getType)
 
     // copy the pixels over, column-by-column, from right to left
     for (column <- 0 until width)
       for (row <- 0 until height)
         result.setRGB(column, row, image.getRGB(width - column - 1, row))
 
-    saveImage(result, outputFilename)
+    result
   }
 
   /** Flips an image along its vertical axis */
-  def flipVertical(inputFilename: String, outputFilename: String): Boolean = {
-    val image = loadImage(inputFilename)
+  def flipVertical(image: BufferedImage): BufferedImage = {
 
     // create a new, empty image to copy pixels into
     val width = image.getWidth
     val height = image.getHeight
-    val imageType = image.getType
-    val result = new BufferedImage(width, height, imageType)
+    val result = new BufferedImage(width, height, image.getType)
 
     // copy the pixels over, column-by-column, from top to bottom
     for (column <- 0 until width)
       for (row <- 0 until height)
         result.setRGB(column, row, image.getRGB(column, height - row - 1))
 
-    saveImage(result, outputFilename)
+    result
   }
 
   /** Rotates an image counter-clockwise 90 degrees */
-  def rotateLeft(inputFilename: String, outputFilename: String): Boolean = {
-    val image = loadImage(inputFilename)
+  def rotateLeft(image: BufferedImage): BufferedImage = {
 
     // create a new, empty image to copy pixels into
     val width = image.getHeight
     val height = image.getWidth
-    val imageType = image.getType
-    val result = new BufferedImage(width, height, imageType)
+    val result = new BufferedImage(width, height, image.getType)
 
     // copy the pixels over, column-by-column, while rotating
     for (column <- 0 until width)
       for (row <- 0 until height)
         result.setRGB(column, row, image.getRGB(height - row - 1, column))
 
-    saveImage(result, outputFilename)
+    result
   }
 
   /** Rotates an image clockwise 90 degrees */
-  def rotateRight(inputFilename: String, outputFilename: String): Boolean = {
-    val image = loadImage(inputFilename)
-
+  def rotateRight(image: BufferedImage): BufferedImage = {
     // create a new, empty image to copy pixels into
     val width = image.getHeight
     val height = image.getWidth
-    val imageType = image.getType
-    val result = new BufferedImage(width, height, imageType)
+    val result = new BufferedImage(width, height, image.getType)
 
     // copy the pixels over, column-by-column, while rotating
     for (column <- 0 until width)
       for (row <- 0 until height)
         result.setRGB(column, row, image.getRGB(row, width - column - 1))
 
-    saveImage(result, outputFilename)
+    result
   }
 
   /** Coverts an image to grayscale */
-  def grayScale(inputFilename: String, outputFilename: String): Boolean = {
-    val image = loadImage(inputFilename)
-
+  def grayScale(image:BufferedImage): BufferedImage = {
     // create a new, empty image to copy pixels into
     val width = image.getWidth
     val height = image.getHeight
-    val imageType = image.getType
-    val result = new BufferedImage(width, height, imageType)
+    val result = new BufferedImage(width, height, image.getType)
 
     // copy the pixels over, column-by-column, grayscaling each pixel
     for (column <- 0 until width)
@@ -106,8 +95,9 @@ object Picture {
         result.setRGB(column, row, newPixel.getRGB)
       }
 
-    saveImage(result, outputFilename)
+    result
   }
+
 
   /*****************************************************************************
     * Helper functions

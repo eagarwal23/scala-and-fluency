@@ -98,7 +98,44 @@ object Picture {
     result
   }
 
+  def bisectHorizontally(image: BufferedImage): BufferedImage = {
+    // create a new, empty image to copy pixels into
+    val width = image.getWidth/2
+    val height = image.getHeight
+    val result = new BufferedImage(width, height, image.getType)
+    for (column <- 0 until width)
+      for (row <- 0 until height){
+        result.setRGB(column, row, image.getRGB(column, row))
+      }
+    result
+  }
 
+  def bisectVertically(image: BufferedImage): BufferedImage = {
+    // create a new, empty image to copy pixels into
+    val width = image.getWidth
+    val height = image.getHeight/2
+    val result = new BufferedImage(width, height, image.getType)
+    for (column <- 0 until width)
+      for (row <- 0 until height){
+        result.setRGB(column, row, image.getRGB(column, row))
+      }
+    result
+  }
+
+  def blur(image:BufferedImage): BufferedImage = {
+    val height = image.getHeight
+    val width = image.getWidth
+    val result = new BufferedImage(width, height, image.getType)
+    for (column <- 0 until width)
+      for (row <- 0 until height){
+        if (column != 0 && column != width && row != 0 && row != height){
+          val blurPixel = Math.round((image.getRGB(column, row) + image.getRGB(column + 1, row) + image.getRGB(column - 1, row)) + image.getRGB(column, row +1) + image.getRGB(column, row - 1))/5)
+          result.setRGB(column, row, blurPixel)
+        }else {
+          result.setRGB(column, row, image.getRGB(column, row))}
+      }
+    result
+  }
   /*****************************************************************************
     * Helper functions
     *
